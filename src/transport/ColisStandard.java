@@ -5,9 +5,11 @@ public class ColisStandard implements Colis {
 	private final float  poids ;
 	private final String code;
 	private static long nombreDeCodes = 1;
+
 	private static String creerCodeUnique() {
 		return String.valueOf(nombreDeCodes++);	
 	}
+
 	public ColisStandard( float poids, boolean urgent) {
 		this.poids = poids;
 		this.urgent = urgent;
@@ -15,21 +17,26 @@ public class ColisStandard implements Colis {
 		if (urgent) debutCode = "U";
 		this.code = debutCode + creerCodeUnique();
 	}
+
 	public ColisStandard( float poids) {
 		this( poids, false);
 	}
+
 	@Override
 	public float poids() {
 		return poids;
 	}
+
 	@Override
 	public float prixDeTransport() {
 		if ( urgent )
 			return poids * Tarif.TRANSPORT_URGENT.getValeur() ;
 		return poids * Tarif.TRANSPORT_NORMAL.getValeur(); 
 	}
+
 	@Override
 	public String code() { return code; }
+
 	protected String fin() { return ")"; }
 	@Override
 	public String toString() {
