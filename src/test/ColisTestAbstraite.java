@@ -7,6 +7,11 @@ import transport.ColisStandard;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * <b>La classe ColisTestAbstraite permet de tester les méthodes communes aux classes
+ * de test ColisGarantiTest {@link ColisGarantiTest} et ColisStandardTest {@link ColisStandardTest} .</b>
+ * @author Kodjo Pierre AKPATA & Dikra CHEMLAL
+ */
 abstract class ColisTestAbstraite {
 
     /**
@@ -37,8 +42,8 @@ abstract class ColisTestAbstraite {
 
 
     /**
-     * La méthode testPoids permet de tester la méthode poids définie dans
-     * l'interface Colis.
+     * Elle permet de tester la méthode poids {@link Colis#poids()} définie dans
+     * l'interface Colis .
      */
     @Test
     void testPoids() {
@@ -50,7 +55,7 @@ abstract class ColisTestAbstraite {
     }
 
     /**
-     * La méthode testCode permet de tester la méthode code définie
+     * Elle permet de tester la méthode {@link Colis#code()} code définie
      * dans l'interface Colis.
      */
     @Test
@@ -62,6 +67,10 @@ abstract class ColisTestAbstraite {
         assertEquals("U4", colisG2.code());
     }
 
+    /**
+     * Elle permet de tester la méthode {@link transport.Ordonnable#estSuperieurA(Object)} définie
+     * dans l'interface Ordonnable.
+     */
     @Test
     void testEstSuperieurA(){
         assertTrue(colis1.estSuperieurA(colis2));
@@ -69,6 +78,10 @@ abstract class ColisTestAbstraite {
         assertTrue(colis1.estSuperieurA(colisG2));
     }
 
+    /**
+     * Elle permet de tester la méthode {@link transport.Ordonnable#estInferieurA(Object)} définie
+     * dans l'interface Ordonnable.
+     */
     @Test
     void testEstInferieurA(){
         assertTrue(colis2.estInferieurA(colis1));
@@ -76,6 +89,10 @@ abstract class ColisTestAbstraite {
         assertTrue(colisG2.estInferieurA(colis1));
     }
 
+    /**
+     * Elle permet de tester la méthode {@link transport.Ordonnable#estEgalA(Object)} définie
+     * dans l'interface Ordonnable.
+     */
     @Test
     void testEstEgalA(){
         assertTrue(colis1.estEgalA(colis1));

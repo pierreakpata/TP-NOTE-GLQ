@@ -2,6 +2,8 @@ package test;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import transport.ColisGaranti;
 import transport.ColisStandard;
 import transport.Lot;
@@ -9,14 +11,14 @@ import transport.Lot;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <b>La classe ColisStandardTest, est une classe permettant de tester la classe
- * ColisStandard.</b>
- * @author Kodjo Pierre AKPATA
+ * <b>La classe ColisStandardTest permet de tester la classe
+ * ColisStandard {@link ColisStandard}.</b>
+ * @author Kodjo Pierre AKPATA & Dikra CHEMLAL
  */
 class ColisStandardTest extends ColisTestAbstraite{
 
     /**
-     * La méthode setUp permet d'initialiser les attributs déclarés.
+     * Initialisation des attributs déclarés dans la classe ColisTestAbstraite.
      */
     @BeforeAll
     static void setUp() throws Exception {
@@ -29,8 +31,8 @@ class ColisStandardTest extends ColisTestAbstraite{
 
 
     /**
-     * La méthode testPrixDeTransport permet de tester la méthode prixDeTransport
-     * définie dans la classe ColisStandard.
+     * Elle permet de tester la méthode prixDeTransport
+     * définie dans la classe ColisStandard {@link ColisStandard#prixDeTransport()}.
      */
     @Test
     void testPrixDeTransport() {
@@ -40,8 +42,8 @@ class ColisStandardTest extends ColisTestAbstraite{
 
 
     /**
-     * La méthode testToString permet de tester la méthode toString
-     * définie dans la classe ColisStandard.
+     * Elle permet de tester la méthode toString
+     * définie dans la classe ColisStandard {@link ColisStandard#toString()}.
      */
     @Test
     void testToString() {
@@ -50,8 +52,8 @@ class ColisStandardTest extends ColisTestAbstraite{
     }
 
     /**
-     * La méthode de test testEquals() permet de tester la méthode equals d'une instance
-     * de la classe ColisStandard en couvrant tous les cas possibles.
+     * Elle permet de tester la méthode equals d'une instance
+     * de la classe ColisStandard {@link ColisStandard#equals(Object)} en couvrant tous les cas possibles.
      */
     @Test
     void testEquals() {
@@ -63,12 +65,15 @@ class ColisStandardTest extends ColisTestAbstraite{
     }
 
     /**
-     * La méthode de test reduction() permet de tester la méthode reduction d'une instance
-     * de la classe ColisStandard en couvrant tous les cas possibles.
+     * Elle permet de tester la méthode reduction d'une instance
+     * de la classe ColisStandard {@link ColisStandard#reduction()} en couvrant tous les cas possibles.
+     * @param poids1
+     * @param poids2
      */
-    @Test
-    void reduction() {
-        assertEquals(2f, colis1.reduction());
-        assertEquals(0f, colis2.reduction());
+    @ParameterizedTest
+    @CsvSource({"3, 1.0", "4, 1.2", "5, 1.3", "6, 2.1", "7, 2.5", "8, 2.9"})
+    void testReduction(float poids1, float poids2) {
+        assertEquals(0f, new ColisStandard(poids1).reduction());
+        assertEquals(2f, new ColisStandard(poids2).reduction());
     }
 }

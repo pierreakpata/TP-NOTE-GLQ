@@ -2,6 +2,8 @@ package test;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import transport.ColisGaranti;
 import transport.ColisStandard;
 import transport.Lot;
@@ -11,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * <b>La classe ColisGarantiTest, est une classe permettant de tester la classe
- * ColisGaranti.</b>
- * @author Kodjo Pierre AKPATA
+ * ColisGaranti {@link ColisGaranti}.</b>
+ * @author Kodjo Pierre AKPATA & Dikra CHEMLAL
  */
 class ColisGarantiTest extends ColisTestAbstraite{
 
@@ -30,8 +32,8 @@ class ColisGarantiTest extends ColisTestAbstraite{
     }
 
     /**
-     * La méthode testConstructeur permet de tester les constructeurs de la classe
-     * ColisGaranti.
+     * Elle permet de tester les constructeurs de la classe
+     * {@link ColisGaranti}.
      */
     @Test
     void testConstructeur(){
@@ -45,8 +47,8 @@ class ColisGarantiTest extends ColisTestAbstraite{
 
 
     /**
-     * La méthode testPrixDeTransport permet de tester la méthode prixDeTransport définie
-     * dans la classe ColisGaranti.
+     * Elle permet de tester la méthode prixDeTransport définie
+     * dans la classe ColisGaranti {@link ColisGaranti#prixDeTransport()}.
      */
     @Test
     void testPrixDeTransport() {
@@ -55,17 +57,21 @@ class ColisGarantiTest extends ColisTestAbstraite{
     }
 
     /**
-     * La méthode testReduction permet de tester la méthode reduction définie
+     * Elle permet de tester la méthode reduction {@link ColisGaranti#reduction()} définie
      * dans la classe ColisGaranti.
+     * @param poids
+     * @param urgent
+     * @param assurance
+     * @throws Exception
      */
-    @Test
-    void testReduction() {
-        assertEquals(2f, colisG1.reduction());
-        assertEquals(2f, colisG2.reduction());
+    @ParameterizedTest
+    @CsvSource({"2, true, 2", "3, false, 3", "5, true, 5"})
+    void testReduction(float poids, boolean urgent, float assurance) throws Exception {
+        assertEquals(2f, new ColisGaranti(poids, urgent, assurance).reduction());
     }
 
     /**
-     * La méthode testReduction permet de tester la méthode reduction définie
+     * Elle permet de tester la méthode equals {@link ColisGaranti#equals(Object)} définie
      * dans la classe ColisGaranti.
      */
     @Test
@@ -78,7 +84,7 @@ class ColisGarantiTest extends ColisTestAbstraite{
     }
 
     /**
-     * La méthode testToString permet de tester la méthode toString définie
+     * Elle permet de tester la méthode toString {@link ColisGaranti#toString()} définie
      * dans la classe ColisGaranti.
      */
     @Test
